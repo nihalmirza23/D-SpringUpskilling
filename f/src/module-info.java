@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author naslammi
+ *
+ */
+module f {
+}
