@@ -22,9 +22,16 @@ import com.udspring.exception.ErrorDetails;
 import com.udspring.exception.ResourceNotFoundException;
 import com.udspring.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
+@Tag(
+		name = "CRUD REST API FOR USER RESOURCE",
+		description ="Create USer ,Update ,get all and get withId" 
+		)
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api")
@@ -35,18 +42,42 @@ public class UserController {
 	
 	private UserService userService;
 	
+	@Operation(
+			summary = "Create User Rest Api",
+			description = "create User Rest Api"
+			)
+	@ApiResponse(
+			responseCode = "201",
+			description = "HTTP status 201 created"
+			
+			)
 	@PostMapping("/user")
 	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto user){
 		UserDto saveuser=userService.createUser(user);
 		return new ResponseEntity<>(saveuser,HttpStatus.OK);
 	}
 	
+	
+	
+	@Operation(
+			summary = "get User By Id Rest Api",
+			description = "get User By Id  Api"
+			)
+	@ApiResponse(
+			responseCode = "200",
+			description = "HTTP status 200 created"
+			
+			)
+	
 	@GetMapping("/get/{id}")
 	public ResponseEntity<UserDto> getUserById(@PathVariable Long id){
 		UserDto user=	userService.getUserById(id);
 	return new ResponseEntity<>(user,HttpStatus.OK);
 	}
-	 
+	
+	
+	
+	
 	@GetMapping("/all")
 	public ResponseEntity<List<UserDto>> getAllUsers(){
 	List<UserDto> users=	userService.getAllUsers();
