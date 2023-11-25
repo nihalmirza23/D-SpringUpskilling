@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.udspring.beans.Employee;
 
-@Controller
 @RestController
 public class EmployeeController {
 
@@ -52,8 +51,6 @@ public class EmployeeController {
 	}
 	
 	@PostMapping("employee")
-	
-	
 	public Employee postEmployee(@RequestBody Employee employee) {
 		System.out.println(employee.getId());
 		return employee;
